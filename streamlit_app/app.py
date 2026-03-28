@@ -1,8 +1,13 @@
 """OpenOA Streamlit Demo - Robust FE + BE."""
 import streamlit as st
 import os
+import sys
 from pathlib import Path
 import shutil
+
+# Make sure Streamlit can find 'openoa' and 'examples' directly from the parent folder
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from openoa import PlantData
 from openoa.analysis import aep, wake_losses
 from examples.project_ENGIE import prepare
