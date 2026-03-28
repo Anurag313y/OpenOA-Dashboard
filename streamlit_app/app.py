@@ -12,6 +12,12 @@ st.set_page_config(page_title="OpenOA", page_icon="🌀", layout="wide")
 st.title("🌀 OpenOA Dashboard")
 st.markdown("NREL OpenOA wind plant analysis (AEP, wakes). ENGIE example auto-load.")
 
+with st.sidebar:
+    st.header("⚙️ Simulation Settings")
+    st.markdown("Adjust the number of Monte Carlo simulations to balance speed vs. accuracy.")
+    num_sim_aep = st.slider("AEP Analysis Simulations", min_value=1, max_value=100, value=10, step=1)
+    num_sim_wake = st.slider("Wake Analysis Simulations", min_value=1, max_value=100, value=5, step=1)
+
 @st.cache_data
 def load_plant():
     """Load ENGIE data via project_ENGIE.prepare (handles zip/data)."""
@@ -43,12 +49,12 @@ with tab1:
     st.dataframe(plant.scada.head())
 
 with tab2:
-    @st.cache_data
-    def aep_analysis():
+    @st.cache_resource
+    def aep_analysis(num_sim):
         a = aep.create_MonteCarloAEP(plant)
-        a.run(num_sim=50)
+        a.run(num_sim=num_sim)
         return a
-    aep_res = aep_analysis()
+    aep_res = aep_analysis(num_sim_aep)
     col1, col2 = st.columns(2)
     with col1:
         mean = aep_res.results.aep_GWh.mean()
@@ -60,12 +66,12 @@ with tab2:
     aep_res.plot_result_aep_distributions()
 
 with tab3:
-    @st.cache_data
-    def wake_analysis():
+    @st.cache_resource
+    def wake_analysis(num_sim):
         w = wake_losses.create_WakeLosses(plant)
-        w.run(num_sim=50)
+        w.run(num_sim=num_sim)
         return w
-    wake_res = wake_analysis()
+    wake_res = wake_analysis(num_sim_wake)
     col1, col2 = st.columns(2)
     with col1:
         st.metric("POR Wake Loss", f"{wake_res.wake_losses_por_mean*100:.1f}%")
