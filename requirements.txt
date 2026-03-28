@@ -22,3 +22,5 @@ xarray[parallel]
 h5py
 netcdf4
 h5pyd
+ipython
+ipywidgets
