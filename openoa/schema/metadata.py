@@ -15,9 +15,10 @@ import pandas as pd
 from attrs import field, define
 from tabulate import tabulate
 
-from openoa.logging import logging, logged_method_call
+from openoa.custom_logging import logged_method_call
+import logging as std_logging
 
-logger = logging.getLogger(__name__)
+logger = std_logging.getLogger(__name__)
 warnings.filterwarnings("once", category=DeprecationWarning)
 
 

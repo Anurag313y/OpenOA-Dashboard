@@ -19,7 +19,7 @@ from attrs import field, define
 import openoa.utils.timeseries as ts
 from openoa.plant import PlantData
 from openoa.schema import FromDictMixin, ResetValuesMixin
-from openoa.logging import logging, logged_method_call
+from openoa.custom_logging import logging, logged_method_call
 from openoa.utils.plot import set_styling
 from openoa.analysis._analysis_validators import validate_UQ_input, validate_half_closed_0_1_right
 

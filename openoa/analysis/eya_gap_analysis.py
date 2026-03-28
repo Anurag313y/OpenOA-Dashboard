@@ -16,7 +16,7 @@ from attrs import field, define
 from openoa.plant import PlantData
 from openoa.utils import plot
 from openoa.schema import FromDictMixin
-from openoa.logging import logging, logged_method_call
+from openoa.custom_logging import logging, logged_method_call
 from openoa.analysis._analysis_validators import validate_half_closed_0_1_left
 
 logger = logging.getLogger(__name__)

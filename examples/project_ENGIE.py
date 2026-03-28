@@ -44,9 +44,10 @@ import openoa.utils.unit_conversion as un
 import openoa.utils.met_data_processing as met
 from openoa.plant import PlantData
 from openoa.utils import filters, timeseries
-from openoa.logging import logging
+from openoa.custom_logging import logging
 
-logger = logging.getLogger()
+import logging as std_logging
+logger = std_logging.getLogger()
 
 
 def extract_data(path="data/la_haute_borne"):

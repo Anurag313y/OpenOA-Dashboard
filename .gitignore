@@ -41,3 +41,5 @@ sphinx/examplesout.ipynb
 
 .ipython
 *.nc
+*.exe
+Miniconda3.exe

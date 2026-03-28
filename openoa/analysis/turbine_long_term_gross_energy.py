@@ -25,7 +25,7 @@ from openoa.utils import plot, filters, imputing
 from openoa.utils import timeseries as ts
 from openoa.utils import met_data_processing as met
 from openoa.schema import FromDictMixin, ResetValuesMixin
-from openoa.logging import logging, logged_method_call
+from openoa.custom_logging import logging, logged_method_call
 from openoa.utils.power_curve import functions
 from openoa.analysis._analysis_validators import (
     validate_UQ_input,

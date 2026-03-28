@@ -15,7 +15,7 @@ from pyproj import Proj
 from dateutil import tz
 
 from openoa.utils import timeseries as ts
-from openoa.logging import logging, logged_method_call
+from openoa.custom_logging import logging, logged_method_call
 from openoa.utils.plot import set_styling
 
 Number = Union[int, float]

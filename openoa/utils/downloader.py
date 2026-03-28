@@ -49,9 +49,10 @@ from tqdm import tqdm
 from requests.exceptions import SSLError
 
 from openoa.utils import met_data_processing as met
-from openoa.logging import logging
+from openoa.custom_logging import logging
 
-logger = logging.getLogger()
+import logging as std_logging
+logger = std_logging.getLogger()
 
 
 BYTES_MB = 1024 * 104

@@ -42,9 +42,10 @@ import pandas as pd
 
 import openoa.utils.downloader as downloader
 from openoa.plant import PlantData
-from openoa.logging import logging
+from openoa.custom_logging import logging
 
-logger = logging.getLogger()
+import logging as std_logging
+logger = std_logging.getLogger()
 
 
 def download_asset_data(
