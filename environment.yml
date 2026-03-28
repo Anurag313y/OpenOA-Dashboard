@@ -1,0 +1,30 @@
+name: openoa
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - scikit-learn
+  - requests
+  - pyproj
+  - shapely
+  - numpy
+  - pandas
+  - pygam
+  - scipy
+  - statsmodels
+  - tqdm
+  - matplotlib
+  - bokeh
+  - attrs
+  - pytz
+  - pyyaml
+  - tabulate
+  - cdsapi
+  - xarray
+  - h5py
+  - netcdf4
+  - streamlit
+  - plotly
+  - pip:
+    - eia-python
+    - h5pyd
