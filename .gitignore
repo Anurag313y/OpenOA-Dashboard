@@ -43,3 +43,16 @@ sphinx/examplesout.ipynb
 *.nc
 *.exe
 Miniconda3.exe
+**/la_haute_borne/
+examples/APIKEY
+.gemini/
+.agents/
+.agent/
+brain/
+artifacts/
+temp/
+tmp/
+*.webp
+*.png
+!streamlit_app/data/OpenOA_Color_Transparent_Background.png
+!OpenOA Final Logos/**/*.png

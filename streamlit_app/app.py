@@ -7,10 +7,34 @@ from openoa import PlantData
 from openoa.analysis import aep, wake_losses
 from examples.project_ENGIE import prepare
 
-st.set_page_config(page_title="OpenOA", page_icon="🌀", layout="wide")
+st.set_page_config(page_title="OpenOA Dashboard", page_icon="🌀", layout="wide")
+
+# Premium Aesthetic Injection
+st.markdown("""
+<style>
+    .stApp {
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+    [data-testid="stSidebar"] {
+        background-color: #ffffff;
+        border-right: 1px solid #dee2e6;
+    }
+    .stMetric {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+    h1 {
+        color: #1a202c;
+        font-family: 'Inter', sans-serif;
+        font-weight: 800;
+    }
+</style>
+""", unsafe_allow_html=True)
 
 st.title("🌀 OpenOA Dashboard")
-st.markdown("NREL OpenOA wind plant analysis (AEP, wakes). ENGIE example auto-load.")
+st.markdown("_NREL OpenOA wind plant analysis (AEP, wakes)._")
 
 with st.sidebar:
     st.header("⚙️ Simulation Settings")
@@ -18,7 +42,7 @@ with st.sidebar:
     num_sim_aep = st.slider("AEP Analysis Simulations", min_value=1, max_value=100, value=10, step=1)
     num_sim_wake = st.slider("Wake Analysis Simulations", min_value=1, max_value=100, value=5, step=1)
 
-@st.cache_data
+@st.cache_resource
 def load_plant():
     """Load ENGIE data via project_ENGIE.prepare (handles zip/data)."""
     data_dir = Path(__file__).parent / "data"
@@ -32,7 +56,8 @@ def load_plant():
     plant = prepare(path=data_path, return_value="plantdata")
     return plant
 
-plant = load_plant()
+with st.spinner("Initializing Data Engine..."):
+    plant = load_plant()
 
 tab1, tab2, tab3 = st.tabs(["Data", "AEP", "Wakes"])
 
@@ -79,5 +104,9 @@ with tab3:
     wake_res.plot_wake_losses_by_wind_direction()
     wake_res.plot_wake_losses_by_wind_speed()
 
-st.markdown("**Permanent Live App:** Streamlit Cloud: GitHub `NatLabRockies/OpenOA` branch `blackboxai/streamlit-deploy` path `streamlit_app/app.py`. Link: https://yourapp.streamlit.app")
+st.markdown("---")
+col_footer, _ = st.columns([1, 1])
+with col_footer:
+    st.caption("🚀 **Live Deployment Instance**")
+    st.caption("Engine: [OpenOA v3.2](https://github.com/Anurag313y/OpenOA-Dashboard) | Powered by Streamlit")
 
