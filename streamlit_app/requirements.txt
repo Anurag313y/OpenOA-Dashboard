@@ -1,0 +1,5 @@
+streamlit
+openoa[examples,reanalysis]
+plotly
+bokeh
+
